@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class block : MonoBehaviour {
+public class block : MonoBehaviour
+{
 
+    public GameObject score;
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
-        // Destroy the whole Block
+        score.SendMessage("addPoints", 10);
         Destroy(gameObject);
     }
 }
