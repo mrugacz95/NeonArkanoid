@@ -9,6 +9,7 @@ public class ball : MonoBehaviour
     public AudioClip impact;
     AudioSource audioSource;
     Vector2 startPosition;
+    public GameObject lives;
     void startMovement()
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
@@ -42,9 +43,13 @@ public class ball : MonoBehaviour
             }
         }
     }
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D trigger)
     {
-        transform.position = startPosition;
-        startMovement();
+        if (trigger.gameObject.name == "basement")
+        {
+            lives.SendMessage("takeLive");
+            transform.position = startPosition;
+            startMovement();
+        }
     }
 }
