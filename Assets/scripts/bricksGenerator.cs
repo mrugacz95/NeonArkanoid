@@ -2,23 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bricksGenerator : MonoBehaviour
+public class BricksGenerator : MonoBehaviour
 {
     public GameObject simpleBrick;
 
     private string[][] levels = {
-    new string[] { "xxxxxxxxxxxxx",
-                   "xxxxxxxxxxxxx",
-                   "xxxxxxxxxxxxx"},
-    new string[] { "xxxxoooooxxxx",
-                   "xxxoxxoxxoxxx",
-                    "xxxxoooooxxxx"},
-    new string[] { "xxxxxxxxxxxxx",
-                   "xxxxxxxxxxxxx",
-                   "XXXXXXXXXXXXX"},
-    new string[] { "xxxxXxoxXxxxx",
-                   "xxxXxxxxxXxxx",
-                   "XoXoooooooXoX"},
+    new string[] { "oooooooooooo",
+                   "oooooooooooo",
+                   "oooooooooooo"},
+    new string[] { "oxoxoxoxoxox",
+                   "xoxoxoxoxoxo",
+                   "oxoxoxoxoxox"},
+    new string[] { "xxxxoooooxxx",
+                   "xxxoxxoxxoxx",
+                   "xxxxoooooxxx"},
+    new string[] { "oooooooooooo",
+                   "xxxxxxxxxxxx",
+                   "XXXXXXXXXXXX"},
+    new string[] { "xxxxXxxXxxxx",
+                   "xxxXxxxxXxxx",
+                   "XoXooooooXoX"},
+    new string[] { "ooxxxooxxxoo",
+                   "XxooxooxooxX",
+                   "XxXxxooxxXxX"},
+    new string[] { "XXxxooooxxXX",
+                   "ooXXxxxxXXoo",
+                   "xxooXXXXooXX"},
+    new string[] { "XxXoxxxxoXxX",
+                   "xXoXxooxXoXx",
+                   "XxXoxxxxoXxX"},
+    new string[] { "XxxXxxXxxXxx",
+                   "oXooXooXooXo",
+                   "ooXooXooXooX",
+                   "XooXooXooXoo"},
+    new string[] { "XXXXXXXXXXXX",
+                   "XXXXXXXXXXXX",
+                   "XXXXXXXXXXXX",
+                   "XXXXXXXXXXXX"},
     };
 
     private void generateLevel(int levelNumber)
@@ -33,18 +53,18 @@ public class bricksGenerator : MonoBehaviour
                 {
                     case 'o':
                         GameObject singleHitBrick = Instantiate(simpleBrick);
-                        singleHitBrick.transform.position = new Vector2(transform.position.x + width * col, transform.position.y + height * row);
-                        singleHitBrick.SendMessage("setType", brick.Type.SINGLE_HIT);
+                        singleHitBrick.transform.position = new Vector2(transform.position.x + width/2+ width * col, transform.position.y + height * row);
+                        singleHitBrick.SendMessage("setType", Brick.Type.SINGLE_HIT);
                         break;
                     case 'x':
                         GameObject doubleHitBrick = Instantiate(simpleBrick);
-                        doubleHitBrick.transform.position = new Vector2(transform.position.x + width * col, transform.position.y + height * row);
-                        doubleHitBrick.SendMessage("setType", brick.Type.DOUBLE_HIT);
+                        doubleHitBrick.transform.position = new Vector2(transform.position.x+ width / 2 + width * col, transform.position.y + height * row);
+                        doubleHitBrick.SendMessage("setType", Brick.Type.DOUBLE_HIT);
                         break;
                     case 'X':
                         GameObject trippleHitBrick = Instantiate(simpleBrick);
-                        trippleHitBrick.transform.position = new Vector2(transform.position.x + width * col, transform.position.y + height * row);
-                        trippleHitBrick.SendMessage("setType", brick.Type.TRIPPLE_HIT);
+                        trippleHitBrick.transform.position = new Vector2(transform.position.x + width / 2 + width * col, transform.position.y + height * row);
+                        trippleHitBrick.SendMessage("setType", Brick.Type.TRIPPLE_HIT);
                         break;
                 }
     }

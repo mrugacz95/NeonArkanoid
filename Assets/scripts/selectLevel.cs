@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class selectLevel : MonoBehaviour {
+public class SelectLevel : MonoBehaviour {
 
     private Text levelNumber;
     public GameObject levelObject;
@@ -14,6 +14,7 @@ public class selectLevel : MonoBehaviour {
         Button btn = gameObject.GetComponent<Button>();
         btn.onClick.AddListener(startLevel);
         levelNumber = levelObject.GetComponent<Text>();
+        levelNumber.text = ApplicationModel.getLevel().ToString();
 
     }
     void startLevel()

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ApplicationModel {
 
-    static private int level = 4;
+    static private int level = 1;
     static private int maxLevel = 10;
     static private int minLevel = 1;
 

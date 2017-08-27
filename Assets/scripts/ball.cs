@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ball : MonoBehaviour
+public class Ball : MonoBehaviour
 {
     // Movement Speed
     public float speed = 100.0f;
@@ -37,10 +38,12 @@ public class ball : MonoBehaviour
                               col.collider.bounds.size.x);
             Vector2 dir = new Vector2(x, 1).normalized;
             GetComponent<Rigidbody2D>().velocity = dir * speed;
-            if (GameObject.FindWithTag("block") == null)
-            {
-                Debug.Log("Koniec");
-            }
+           
+        }
+        if (GameObject.FindGameObjectsWithTag("block").Length == 1)
+        {
+            ApplicationModel.nextLevel();
+            SceneManager.LoadScene(1);
         }
     }
     void OnTriggerEnter2D(Collider2D trigger)

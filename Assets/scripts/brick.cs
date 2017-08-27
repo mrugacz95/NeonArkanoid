@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class brick : MonoBehaviour
+public class Brick : MonoBehaviour
 {
     public enum Type {SINGLE_HIT, DOUBLE_HIT, TRIPPLE_HIT};
     public Sprite singleHitSprite;
@@ -17,16 +18,28 @@ public class brick : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
         hitsToDestroy--;
+        setSprite();
         if (hitsToDestroy == 0)
         {
             score.SendMessage("addPoints", getPoints());
-            GameObject b = Instantiate(bonus);
-            b.transform.position = this.transform.position;
-            b.SendMessage("startMovement");
+            spawnBonus();
             Destroy(gameObject);
         }
-        setSprite();
     }
+
+    private void spawnBonus()
+    {
+        if (UnityEngine.Random.value < 0.3) {
+            Array values = Enum.GetValues(typeof(Bonus.BonusType));
+            System.Random random = new System.Random();
+            Bonus.BonusType randomType = (Bonus.BonusType)values.GetValue(random.Next(values.Length));
+            GameObject powerup = Instantiate(bonus);
+            powerup.transform.position = this.transform.position;
+            powerup.SendMessage("setType", randomType);
+            powerup.SendMessage("startMovement");
+        }
+    }
+
     public void setType(Type type) {
         this.type = type;
         spriteRenderer = GetComponent<SpriteRenderer>();

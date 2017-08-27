@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class startGame : MonoBehaviour {
+public class StartGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class lives : MonoBehaviour
+public class Lives : MonoBehaviour
 {
-    public int livesNum = 3;
+    private static int livesNum = 3;
     private string livesText;
     private Text text;
     void Start()
@@ -17,11 +17,17 @@ public class lives : MonoBehaviour
     }
     public void takeLive()
     {
-        this.livesNum--;
+        livesNum--;
         printLives();
+        if (livesNum <= 0)
+            SceneManager.LoadScene(0);
     }
     private void printLives()
     {
-        text.text = livesText + this.livesNum.ToString();
+        text.text = livesNum.ToString() + livesText;
+    }
+    public static int getLives()
+    {
+        return livesNum;
     }
 }

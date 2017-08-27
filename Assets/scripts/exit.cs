@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class exit : MonoBehaviour
+public class Exit : MonoBehaviour
 {
     void Start()
     {
