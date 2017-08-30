@@ -5,16 +5,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SelectLevel : MonoBehaviour {
-
-    private Text levelNumber;
+    
     public GameObject levelObject;
+    private Text level;
 
     void Start()
     {
         Button btn = gameObject.GetComponent<Button>();
+        level = levelObject.GetComponent<Text>();
         btn.onClick.AddListener(startLevel);
-        levelNumber = levelObject.GetComponent<Text>();
-        levelNumber.text = ApplicationModel.getLevel().ToString();
 
     }
     void startLevel()
@@ -24,11 +23,11 @@ public class SelectLevel : MonoBehaviour {
     void nextLevel()
     {
         ApplicationModel.nextLevel();
-        levelNumber.text = ApplicationModel.getLevel().ToString();
+        level.text = ApplicationModel.getLevel().ToString();
     }
     void prevLevel()
     {
         ApplicationModel.prevLevel();
-        levelNumber.text = ApplicationModel.getLevel().ToString();
+        level.text = ApplicationModel.getLevel().ToString();
     }
 }
